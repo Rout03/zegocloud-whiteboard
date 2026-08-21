@@ -10,51 +10,15 @@ import { HiOutlineCursorClick } from "react-icons/hi";
 
 const Tools = ({ currentTool, onClick }) => {
   const tools = [
-    {
-      name: "Pen",
-      tool: FaPen,
-      type: 1,
-    },
-    {
-      name: "Text",
-      tool: MdOutlineTextFields,
-      type: 2,
-    },
-    {
-      name: "Line",
-      tool: FaSlash,
-      type: 4,
-    },
-    {
-      name: "Rectangle",
-      tool: RiRectangleLine,
-      type: 8,
-    },
-    {
-      name: "Ellipse",
-      tool: IoEllipseOutline,
-      type: 16,
-    },
-    {
-      name: "Selector",
-      tool: GrSelect,
-      type: 32,
-    },
-    {
-      name: "Eraser",
-      tool: LuEraser,
-      type: 64,
-    },
-    {
-      name: "Laser",
-      tool: GiLaserBurst,
-      type: 128,
-    },
-    {
-      name: "Click",
-      tool: HiOutlineCursorClick,
-      type: 256,
-    },
+    { name: "Pen", tool: FaPen, type: 1 },
+    { name: "Text", tool: MdOutlineTextFields, type: 2 },
+    { name: "Line", tool: FaSlash, type: 4 },
+    { name: "Rectangle", tool: RiRectangleLine, type: 8 },
+    { name: "Ellipse", tool: IoEllipseOutline, type: 16 },
+    { name: "Selector", tool: GrSelect, type: 32 },
+    { name: "Eraser", tool: LuEraser, type: 64 },
+    { name: "Laser", tool: GiLaserBurst, type: 128 },
+    { name: "Click", tool: HiOutlineCursorClick, type: 256 },
   ];
 
   return (
@@ -66,26 +30,27 @@ const Tools = ({ currentTool, onClick }) => {
         shadow-xl
 
         /* Mobile */
-        bottom-3
-        left-1/2
-        -translate-x-1/2
-        w-[95%]
-        h-auto
+        bottom-2
+        left-2
+        right-2
+        w-auto
+        h-[58px]
+        translate-x-0
         rounded-2xl
         flex
         flex-row
         items-center
-        justify-start
         px-2
-        py-2
         gap-2
         overflow-x-auto
+        overflow-y-hidden
+        scrollbar-hide
 
-        /* Tablet + Desktop */
+        /* Desktop */
         md:top-5
         md:bottom-auto
         md:left-5
-        md:translate-x-0
+        md:right-auto
         md:w-[70px]
         md:h-[90vh]
         md:rounded-3xl
@@ -95,24 +60,25 @@ const Tools = ({ currentTool, onClick }) => {
         md:px-0
         md:py-6
         md:gap-4
-        md:overflow-x-visible
+        md:overflow-x-hidden
         md:overflow-y-auto
       "
     >
       {tools.map((item, index) => {
         const Icon = item.tool;
-
         const isSelected = currentTool === item.type;
 
         return (
-          <div
+          <button
             key={index}
             onClick={() => onClick(item)}
             title={item.name}
             className={`
               flex-shrink-0
+
               w-10
               h-10
+
               md:w-12
               md:h-12
 
@@ -131,9 +97,12 @@ const Tools = ({ currentTool, onClick }) => {
             `}
           >
             <Icon
-              className="text-xl md:text-2xl"
+              className="
+                text-lg
+                md:text-2xl
+              "
             />
-          </div>
+          </button>
         );
       })}
     </div>
