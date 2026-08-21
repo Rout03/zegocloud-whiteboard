@@ -60,20 +60,43 @@ const Tools = ({ currentTool, onClick }) => {
   return (
     <div
       className="
-        w-[80px]
-        h-[90vh]
-        bg-white
-        rounded-3xl
-        shadow-xl
-        absolute
-        top-5
-        left-5
-        flex
-        flex-col
-        items-center
-        py-6
-        gap-4
+        fixed
         z-[100]
+        bg-white
+        shadow-xl
+
+        /* Mobile */
+        bottom-3
+        left-1/2
+        -translate-x-1/2
+        w-[95%]
+        h-auto
+        rounded-2xl
+        flex
+        flex-row
+        items-center
+        justify-start
+        px-2
+        py-2
+        gap-2
+        overflow-x-auto
+
+        /* Tablet + Desktop */
+        md:top-5
+        md:bottom-auto
+        md:left-5
+        md:translate-x-0
+        md:w-[70px]
+        md:h-[90vh]
+        md:rounded-3xl
+        md:flex-col
+        md:items-center
+        md:justify-start
+        md:px-0
+        md:py-6
+        md:gap-4
+        md:overflow-x-visible
+        md:overflow-y-auto
       "
     >
       {tools.map((item, index) => {
@@ -85,23 +108,31 @@ const Tools = ({ currentTool, onClick }) => {
           <div
             key={index}
             onClick={() => onClick(item)}
+            title={item.name}
             className={`
-              w-12
-              h-12
+              flex-shrink-0
+              w-10
+              h-10
+              md:w-12
+              md:h-12
+
               flex
               items-center
               justify-center
+
               cursor-pointer
               rounded-xl
+
               ${
                 isSelected
                   ? "bg-blue-100"
                   : "hover:bg-gray-100"
               }
             `}
-            title={item.name}
           >
-            <Icon size={24} />
+            <Icon
+              className="text-xl md:text-2xl"
+            />
           </div>
         );
       })}

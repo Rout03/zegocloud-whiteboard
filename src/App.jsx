@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ZegoSuperBoardManager } from "zego-superboard-web";
 import { ZegoExpressEngine } from "zego-express-engine-webrtc";
 import Tools from "./Tools";
@@ -9,7 +8,9 @@ const App = () => {
   const userID = "kausik";
   const roomID = "5642";
   const userName = "kausik";
-  const [currentTool,setCurrentTool]=useState(null)
+
+  const [currentTool, setCurrentTool] = useState(null);
+
   const token =
     "04AAAAAGqIU7MADDo7pJ9znNg1ztvdZQCwpiJXFhW6teWS+7O+Zwl6bd6EatRrgoWq8RSnfP+DAqFOSESkA1N6kWFx43ZlzvaCHtRj/WAD2piY1Llml+0bARfPdTosQlWdCZCB9BgFWdic+8FRHteR6vwUQHxo0sSscaAoYK2PzuqOTbgiKWjqeMBp/WawE7wZDs0ZUwPGth6RRjxJ97vjgmRUDXkINREyFlQZv/WMJ7nb7coJg1X5Az8MvlHM+ymWogpasciesLoB";
 
@@ -39,7 +40,9 @@ const App = () => {
         userUpdate: true,
       }
     );
- setCurrentTool(zegoSuperBoard.getToolType())
+
+    setCurrentTool(zegoSuperBoard.getToolType());
+
     await zegoSuperBoard.createWhiteboardView({
       name: "Virtual Board",
       perPageWidth: 1600,
@@ -53,12 +56,23 @@ const App = () => {
   }, []);
 
   return (
-    <div className="h-screen bg-black w-full">
-      <div id="parentDomID" className="w-full h-full"></div>
-      <Tools currentTool={currentTool} onClick={(tool)=>{
-        zegoSuperBoard.setToolType(tool.type)
-        setCurrentTool(tool.type)
-      }}/>
+    <div className="w-full h-[100dvh] bg-black overflow-hidden relative">
+      
+      {/* Whiteboard */}
+      <div
+        id="parentDomID"
+        className="w-full h-full"
+      ></div>
+
+      {/* Tools */}
+      <Tools
+        currentTool={currentTool}
+        onClick={(tool) => {
+          zegoSuperBoard.setToolType(tool.type);
+          setCurrentTool(tool.type);
+        }}
+      />
+
     </div>
   );
 };
